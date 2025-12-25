@@ -4,6 +4,7 @@ import Home from "../pages/Home/home/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import Covaredge from "../covaredge/Covaredge";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
         {
             index:true,
             Component:Home
+        },
+        {
+          path:'/covaredge',
+          Component:Covaredge
         }
     ]
   },

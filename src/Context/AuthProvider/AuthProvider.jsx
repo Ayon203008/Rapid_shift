@@ -10,6 +10,7 @@ import {
 import { GoogleAuthProvider } from "firebase/auth";
 
 const googleProvider = new GoogleAuthProvider()
+// must import this , with out this google login will be not working
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -31,9 +32,6 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-
-
-  
 
 
   // function for signout for a user

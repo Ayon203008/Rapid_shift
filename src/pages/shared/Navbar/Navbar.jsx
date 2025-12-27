@@ -1,18 +1,38 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+
+  const {user,Logout} = useAuth()
+  
+{/* //^ Logout functionality */}
+  const handleLogout =()=>{
+    Logout()
+    .then(result=>{
+      console.log(result)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+
   const navItems = (
     <>
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/about"}>About Us</NavLink>
+        <NavLink to={"/sendparcel"}>Send Parcel</NavLink>
       </li>
       <li>
         <NavLink to={"/covaredge"}>Covaredge</NavLink>
       </li>
+      {
+        user && <>
+        <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+        </>
+      }
     </>
   );
 
@@ -51,7 +71,20 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+
+          {/* //^ show the log out button if the user logged in */}
+          {
+            user ? <button onClick={handleLogout} className=" btn btn-success"> Logout </button> :
+            <>
+          <Link to={'/login'}>
+         <button className="btn btn-primary mx-5 px-5">Login</button>
+          </Link>
+          <Link to='/register'>
+         <button className="btn btn-primary px-5 ">Register</button>
+          </Link>
+          </>
+          }
+          
         </div>
       </div>
     </div>
